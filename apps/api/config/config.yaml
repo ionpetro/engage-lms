@@ -1,4 +1,4 @@
-site_name: LearnHouse
+site_name: Engage.
 site_description: LearnHouse is an open-source platform tailored for learning experiences.
 contact_email: hi@learnhouse.app
 
@@ -38,6 +38,9 @@ redis_config:
   redis_connection_string: redis://localhost:6379/learnhouse
 
 ai_config:
-  chromadb_config:
-    isSeparateDatabaseEnabled: True
-    db_host: "localhost"
+    openai_api_key: "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"
+    is_ai_enabled: true
+  
+chromadb_config:
+  isSeparateDatabaseEnabled: True
+  db_host: "localhost"

@@ -5,7 +5,8 @@ lint.ignore = ["E501", "E712"]
 authors = ["Badr B. (swve)"]
 description = "Learnhouse Backend"
 name = "learnhouse-api"
-package-mode = false
+# Remove or comment out the following line:
+# package-mode = false
 readme = "README.md"
 version = "0.1.0"
 
