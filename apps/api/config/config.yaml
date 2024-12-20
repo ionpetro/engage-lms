@@ -9,7 +9,7 @@ general:
   install_mode: true
 
 security:
-  auth_jwt_secret_key: secret
+  auth_jwt_secret_key: ""
 
 hosting_config:
   domain: learnhouse.app
@@ -29,7 +29,7 @@ hosting_config:
 
 mailing_config:
   resend_api_key: ""
-  system_email_adress: ""
+  system_email_address: ""
 
 database_config:
   sql_connection_string: postgresql://learnhouse:learnhouse@localhost:5432/learnhouse
@@ -38,9 +38,9 @@ redis_config:
   redis_connection_string: redis://localhost:6379/learnhouse
 
 ai_config:
-    openai_api_key: "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"
-    is_ai_enabled: true
-  
+  openai_api_key: ""
+  is_ai_enabled: true
+
 chromadb_config:
   isSeparateDatabaseEnabled: True
   db_host: "localhost"

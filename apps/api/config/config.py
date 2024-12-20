@@ -232,7 +232,7 @@ def get_learnhouse_config() -> LearnHouseConfig:
     )
     system_email_address = env_system_email_address or yaml_config.get(
         "mailing_config", {}
-    ).get("system_email_adress")
+    ).get("system_email_address")
 
     # Sentry config
     # check if the sentry config is provided in the YAML file
