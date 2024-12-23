@@ -12,7 +12,14 @@ import {
   getCourseThumbnailMediaDirectory,
   getUserAvatarMediaDirectory,
 } from '@services/media/media'
-import { ArrowRight, Backpack, Check, File, Sparkles, Video } from 'lucide-react'
+import {
+  ArrowRight,
+  Backpack,
+  Check,
+  File,
+  Sparkles,
+  Video,
+} from 'lucide-react'
 import { useOrg } from '@components/Contexts/OrgContext'
 import UserAvatar from '@components/Objects/UserAvatar'
 import CourseUpdates from '@components/Objects/CourseUpdates/CourseUpdates'
@@ -22,7 +29,7 @@ import { useLHSession } from '@components/Contexts/LHSessionContext'
 const CourseClient = (props: any) => {
   const [user, setUser] = useState<any>({})
   const [learnings, setLearnings] = useState<any>([])
-  const session = useLHSession() as any;
+  const session = useLHSession() as any
   const courseuuid = props.courseuuid
   const orgslug = props.orgslug
   const course = props.course
@@ -37,7 +44,11 @@ const CourseClient = (props: any) => {
 
   async function startCourseUI() {
     // Create activity
-    await startCourse('course_' + courseuuid, orgslug, session.data?.tokens?.access_token)
+    await startCourse(
+      'course_' + courseuuid,
+      orgslug,
+      session.data?.tokens?.access_token
+    )
     await revalidateTags(['courses'], orgslug)
     router.refresh()
 
@@ -56,7 +67,11 @@ const CourseClient = (props: any) => {
 
   async function quitCourse() {
     // Close activity
-    let activity = await removeCourse('course_' + courseuuid, orgslug, session.data?.tokens?.access_token)
+    let activity = await removeCourse(
+      'course_' + courseuuid,
+      orgslug,
+      session.data?.tokens?.access_token
+    )
     // Mutate course
     await revalidateTags(['courses'], orgslug)
     router.refresh()
@@ -112,7 +127,7 @@ const CourseClient = (props: any) => {
           />
 
           <div className="flex flex-row pt-10">
-            <div className="course_metadata_left grow space-y-2">
+            <div className="course_metadata_left grow space-y-2 mr-8 flex-[0.8]">
               <h2 className="py-3 text-2xl font-bold">Description</h2>
               <div className="bg-white shadow-md shadow-gray-300/25 outline outline-1 outline-neutral-200/40 rounded-lg overflow-hidden">
                 <p className="py-5 px-5">{course.description}</p>
@@ -161,13 +176,13 @@ const CourseClient = (props: any) => {
                                 <div className="courseicon items-center flex space-x-2 text-neutral-400">
                                   {activity.activity_type ===
                                     'TYPE_DYNAMIC' && (
-                                      <div className="bg-gray-100 px-2 py-2 rounded-full">
-                                        <Sparkles
-                                          className="text-gray-400"
-                                          size={13}
-                                        />
-                                      </div>
-                                    )}
+                                    <div className="bg-gray-100 px-2 py-2 rounded-full">
+                                      <Sparkles
+                                        className="text-gray-400"
+                                        size={13}
+                                      />
+                                    </div>
+                                  )}
                                   {activity.activity_type === 'TYPE_VIDEO' && (
                                     <div className="bg-gray-100 px-2 py-2 rounded-full">
                                       <Video
@@ -178,22 +193,22 @@ const CourseClient = (props: any) => {
                                   )}
                                   {activity.activity_type ===
                                     'TYPE_DOCUMENT' && (
-                                      <div className="bg-gray-100 px-2 py-2 rounded-full">
-                                        <File
-                                          className="text-gray-400"
-                                          size={13}
-                                        />
-                                      </div>
-                                    )}
-                                    {activity.activity_type ===
+                                    <div className="bg-gray-100 px-2 py-2 rounded-full">
+                                      <File
+                                        className="text-gray-400"
+                                        size={13}
+                                      />
+                                    </div>
+                                  )}
+                                  {activity.activity_type ===
                                     'TYPE_ASSIGNMENT' && (
-                                      <div className="bg-gray-100 px-2 py-2 rounded-full">
-                                        <Backpack
-                                          className="text-gray-400"
-                                          size={13}
-                                        />
-                                      </div>
-                                    )}
+                                    <div className="bg-gray-100 px-2 py-2 rounded-full">
+                                      <Backpack
+                                        className="text-gray-400"
+                                        size={13}
+                                      />
+                                    </div>
+                                  )}
                                 </div>
                                 <Link
                                   className="flex font-semibold grow pl-2 text-neutral-500"
@@ -211,25 +226,25 @@ const CourseClient = (props: any) => {
                                 <div className="flex ">
                                   {activity.activity_type ===
                                     'TYPE_DYNAMIC' && (
-                                      <>
-                                        <Link
-                                          className="flex grow pl-2 text-gray-500"
-                                          href={
-                                            getUriWithOrg(orgslug, '') +
-                                            `/course/${courseuuid}/activity/${activity.activity_uuid.replace(
-                                              'activity_',
-                                              ''
-                                            )}`
-                                          }
-                                          rel="noopener noreferrer"
-                                        >
-                                          <div className="text-xs bg-gray-100 text-gray-400 font-bold px-2 py-1 rounded-full flex space-x-1 items-center">
-                                            <p>Page</p>
-                                            <ArrowRight size={13} />
-                                          </div>
-                                        </Link>
-                                      </>
-                                    )}
+                                    <>
+                                      <Link
+                                        className="flex grow pl-2 text-gray-500"
+                                        href={
+                                          getUriWithOrg(orgslug, '') +
+                                          `/course/${courseuuid}/activity/${activity.activity_uuid.replace(
+                                            'activity_',
+                                            ''
+                                          )}`
+                                        }
+                                        rel="noopener noreferrer"
+                                      >
+                                        <div className="text-xs bg-gray-100 text-gray-400 font-bold px-2 py-1 rounded-full flex space-x-1 items-center">
+                                          <p>Page</p>
+                                          <ArrowRight size={13} />
+                                        </div>
+                                      </Link>
+                                    </>
+                                  )}
                                   {activity.activity_type === 'TYPE_VIDEO' && (
                                     <>
                                       <Link
@@ -252,46 +267,46 @@ const CourseClient = (props: any) => {
                                   )}
                                   {activity.activity_type ===
                                     'TYPE_DOCUMENT' && (
-                                      <>
-                                        <Link
-                                          className="flex grow pl-2 text-gray-500"
-                                          href={
-                                            getUriWithOrg(orgslug, '') +
-                                            `/course/${courseuuid}/activity/${activity.activity_uuid.replace(
-                                              'activity_',
-                                              ''
-                                            )}`
-                                          }
-                                          rel="noopener noreferrer"
-                                        >
-                                          <div className="text-xs bg-gray-100 text-gray-400 font-bold px-2 py-1 rounded-full flex space-x-1 items-center">
-                                            <p>Document</p>
-                                            <ArrowRight size={13} />
-                                          </div>
-                                        </Link>
-                                      </>
-                                    )}
-                                    {activity.activity_type ===
+                                    <>
+                                      <Link
+                                        className="flex grow pl-2 text-gray-500"
+                                        href={
+                                          getUriWithOrg(orgslug, '') +
+                                          `/course/${courseuuid}/activity/${activity.activity_uuid.replace(
+                                            'activity_',
+                                            ''
+                                          )}`
+                                        }
+                                        rel="noopener noreferrer"
+                                      >
+                                        <div className="text-xs bg-gray-100 text-gray-400 font-bold px-2 py-1 rounded-full flex space-x-1 items-center">
+                                          <p>Document</p>
+                                          <ArrowRight size={13} />
+                                        </div>
+                                      </Link>
+                                    </>
+                                  )}
+                                  {activity.activity_type ===
                                     'TYPE_ASSIGNMENT' && (
-                                      <>
-                                        <Link
-                                          className="flex grow pl-2 text-gray-500"
-                                          href={
-                                            getUriWithOrg(orgslug, '') +
-                                            `/course/${courseuuid}/activity/${activity.activity_uuid.replace(
-                                              'activity_',
-                                              ''
-                                            )}`
-                                          }
-                                          rel="noopener noreferrer"
-                                        >
-                                          <div className="text-xs bg-gray-100 text-gray-400 font-bold px-2 py-1 rounded-full flex space-x-1 items-center">
-                                            <p>Assignment</p>
-                                            <ArrowRight size={13} />
-                                          </div>
-                                        </Link>
-                                      </>
-                                    )}
+                                    <>
+                                      <Link
+                                        className="flex grow pl-2 text-gray-500"
+                                        href={
+                                          getUriWithOrg(orgslug, '') +
+                                          `/course/${courseuuid}/activity/${activity.activity_uuid.replace(
+                                            'activity_',
+                                            ''
+                                          )}`
+                                        }
+                                        rel="noopener noreferrer"
+                                      >
+                                        <div className="text-xs bg-gray-100 text-gray-400 font-bold px-2 py-1 rounded-full flex space-x-1 items-center">
+                                          <p>Assignment</p>
+                                          <ArrowRight size={13} />
+                                        </div>
+                                      </Link>
+                                    </>
+                                  )}
                                 </div>
                               </div>
                             </>
@@ -303,13 +318,22 @@ const CourseClient = (props: any) => {
                 })}
               </div>
             </div>
-            <div className="course_metadata_right space-y-3 w-72 antialiased flex flex-col ml-10 h-fit p-3 py-5 bg-white shadow-md shadow-gray-300/25 outline outline-1 outline-neutral-200/40 rounded-lg overflow-hidden">
+            <div className="course_metadata_right space-y-3 w-80 antialiased flex flex-col flex-[0.2] h-fit p-3 py-5 bg-white shadow-md shadow-gray-300/25 outline outline-1 outline-neutral-200/40 rounded-lg overflow-hidden">
               {user && (
                 <div className="flex flex-col mx-auto space-y-3 px-2 py-2 items-center">
                   <UserAvatar
                     border="border-8"
-                    avatar_url={course.authors[0].avatar_image ? getUserAvatarMediaDirectory(course.authors[0].user_uuid, course.authors[0].avatar_image) : ''}
-                    predefined_avatar={course.authors[0].avatar_image ? undefined : 'empty'}
+                    avatar_url={
+                      course.authors[0].avatar_image
+                        ? getUserAvatarMediaDirectory(
+                            course.authors[0].user_uuid,
+                            course.authors[0].avatar_image
+                          )
+                        : ''
+                    }
+                    predefined_avatar={
+                      course.authors[0].avatar_image ? undefined : 'empty'
+                    }
                     width={100}
                   />
                   <div className="-space-y-2 ">
