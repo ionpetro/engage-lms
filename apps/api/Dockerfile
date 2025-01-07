@@ -19,7 +19,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && poetry config virtualenvs.create false
 
 # Copy only requirements to cache them in docker layer
-COPY poetry.lock pyproject.toml ./
+COPY pyproject.toml poetry.lock ./
+
+# Create empty README.md to satisfy poetry
+RUN touch README.md
 
 # Install dependencies
 RUN poetry install --no-interaction --no-ansi --no-root --only main
