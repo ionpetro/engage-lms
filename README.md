@@ -1,7 +1,7 @@
 # AI LMS
 
 1. `git clone`
-2. `cd ai-lms`
+2. `cd engage-lms`
 3. `touch .env.local`
 
 ```jsx
